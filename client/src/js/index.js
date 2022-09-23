@@ -57,6 +57,7 @@ form.addEventListener("submit", (event) => {
   // Reload the DOM
   fetchCards();
 });
+
 // Card functionality
 window.deleteCard = (e) => {
   // Grabs the id from the button element attached to the contact card.
@@ -65,4 +66,23 @@ window.deleteCard = (e) => {
   deleteDb(id);
   // Reload the DOM
   fetchCards();
+};
+
+window.editCard = (e) => {
+  // Grabs the id from the button element attached to the contact card and sets a global variable that will be used in the form element.
+  profileId = parseInt(e.dataset.id);
+
+  // Grabs information to pre-populate edit form
+  let editName = e.dataset.name;
+  let editEmail = e.dataset.email;
+  let editPhone = e.dataset.phone;
+
+  document.getElementById("name").value = editName;
+  document.getElementById("email").value = editEmail;
+  document.getElementById("phone").value = editPhone;
+
+  form.style.display = "block";
+
+  // Toggles the Submit button so that it now Updates an existing contact instead of posting a new one
+    submitBtnToUpdate = true;
 };
